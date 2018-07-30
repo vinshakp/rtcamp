@@ -186,6 +186,11 @@ sup {
 img {
 	border-style: none;
 }
+ul {
+    -webkit-padding-start: 0px !important;
+    margin: 0;
+    padding: 0;
+}
 
 /* Forms
 	 ========================================================================== */
