@@ -24,7 +24,7 @@
 		</div>
 	</div>
 		<div class="site-info">
-			<div class="container ">
+			<div class="container f2">
 				<div class="bottom_footer">
 					<nav id="site-navigation2" class="main-navigation footer">
 							<?php
@@ -47,33 +47,7 @@
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="<?php bloginfo('template_directory')?>/lib/bxslider/jquery.bxslider.js"></script>
-	<script>
-  $(document).ready(function(){
-    $('.slider').bxSlider({
-	  pager: true,
-	  mode: 'vertical'
-	});
-	
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").onmouseover();
-  });
-  function openCity(evt, cityName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-    document.getElementById(cityName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
 
-</script>
 <?php wp_footer(); ?>
 
 </body>
