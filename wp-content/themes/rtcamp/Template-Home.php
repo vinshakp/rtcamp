@@ -8,28 +8,61 @@
 get_header();
 ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main">
-			<div class="slider_outer">
-				<div class="container">
-					<ul class="slider">
-						<?php wp_reset_query();
-						query_posts("post_type=slider");  // calling custom post type slider
-						if (have_posts()) :while (have_posts()) : the_post(); ?>
-						<li><span class="sliderimgs"><?php if ( has_post_thumbnail() ) {the_post_thumbnail();}else the_content(); ?></span>	
-							<span class="slider_contents">
-							<h1><a href="<?php the_permalink() ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h1>
-							<p class="desc_titlemain" >
-							<?php if ( ! has_excerpt() ) {  // checking wheather exceprt exist or not
-							$post_contents = substr(get_the_content(), 0, 200); 
-							echo strip_tags($post_contents);
-							} else { the_excerpt();	} ?></p>
-							</span>	
-						</li>
-						<?php  endwhile; endif;?>
-					</ul>
-				</div>
+<div id="primary" class="content-area">
+<main id="main" class="site-main">
+	<div class="slider_outer">
+		<div class="container">
+			<div class="slidercontainer">
+				<div id="jssor_1" style="max-width: 100%;position:relative;margin:0 auto;top:0px;left:0px;width:930px;height:290px;overflow:hidden;visibility:hidden;">
+					<div data-u="slides" style="max-width: 100%;cursor:default;position:relative;top:0px;left:0px;width:930px;height:290px;overflow:hidden;">
+					<?php wp_reset_query();
+					query_posts("post_type=slider");  // calling custom post type slider
+					if (have_posts()) :while (have_posts()) : the_post(); ?>
+					<div>		
+						<?php if ( has_post_thumbnail() )  { ?>
+							<img data-u="" src="<?php the_post_thumbnail_url("full"); ?>" />
+							<?php } else { 
+								$post = get_post( get_the_ID() );
+								$content = $post->post_content;
+								$regex = '/src="([^"]*)"/';
+								preg_match_all( $regex, $content, $matches );
+								$matches = array_reverse($matches);
+								?>
+								<img data-u="" src="<?php echo $matches[0][0]; ?>" />
+						<?php } ?>
+						<span class="slider_contents">
+						<h1><a href="<?php the_permalink() ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h1>
+						<p class="desc_titlemain" >
+						<?php if ( ! has_excerpt() ) {  // checking wheather exceprt exist or not
+						$post_contents = substr(get_the_content(), 0, 200); 
+						echo strip_tags($post_contents);
+						} else { the_excerpt();	} ?></p>
+						</span>	
+						<span class="nav_outer_dt"></span>
+					</div>
+					<?php  endwhile; endif;?>
+					</div>
+					<!-- Bullet Navigator -->
+					<div data-u="navigator" class="jssorb031" style="position: absolute;display: block;top: 103.974px;right:10px;width: 45px;height: 164.297px;" data-autocenter="2" data-scale="0.5" data-scale-right="0.75">
+					<div data-u="prototype" class="i" style="width:13px;height:13px;">
+					<svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+					<circle class="b" cx="8000" cy="8000" r="5800"></circle>
+					</svg>
+					</div>
+					</div>
+					<!-- Arrow Navigator -->
+					<div data-u="arrowleft" class="jssora093 one" style="width:32px;height:32px;top:0px;right:0;" data-scale="0.75" data-scale-left="0.75">
+					<span class="left" ></span>       
+					</div>
+					<div data-u="arrowright" class="jssora093 two" style="width:32px;height:32px;bottom:0px;right:0;" data-scale="0.75" data-scale-right="0.75">
+					<span class="right" ></span>
+					</div>
+					<!-- Arrow Navigator -->
+					<script type="text/javascript">jssor_1_slider_init();</script>
+				</div> 
 			</div>
+		</div>
+	</div>
 			<div class="page_contents">
 				<div class="container">
 				<div class="tab">
